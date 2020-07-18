@@ -1,0 +1,50 @@
+﻿      
+@model ImageServiceWebApp.Models.LogsModel
+
+@{
+    ViewBag.Title = "Logs";
+}
+
+<div>
+
+    <h1 style="font-family:'Lucida Calligraphy'"> Logs</h1>
+    @using (Html.BeginForm("Logs", "Logs", FormMethod.Post))
+    {
+
+        <div>
+            <h2 style="font-family:Courier New, Courier">
+                please enter your Log type:
+            </h2>
+            @Html.TextBoxFor(m => m.TypeChose, new { @class = "form-control" })
+            <input type="submit" id="show" style="margin:3px" class="butten btn-info"  value="Submit"/>
+        </div>
+
+    }
+
+</div>
+
+
+<table class="table table-bordered">
+    <tr style="background-color:azure; tab-size:15px">
+        <th>
+           <p style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;font-size:22px"> Type</p>
+        </th>
+        <th>
+            <p style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size:22px"> Message</p>
+        </th>
+    </tr>
+
+    @foreach (var item in Model.LogsFilter)
+            {
+        <tr>
+            <th>
+                @Html.DisplayFor(modelItem => item.Type)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.Message)
+            </th>
+
+        </tr>}
+
+</table>
+   

@@ -1,0 +1,29 @@
+﻿@model ImageServiceWebApp.Models.ConfigInfoModel
+
+<h1><spane style="font-family:'Lucida Calligraphy'">Handler Remove</spane></h1>
+
+<h4 style="font-family:Courier New, Courier">handler "@Html.DisplayFor(m => m.HandlerRemove)" will be removed. are you sure?</h4>
+
+<input type="button" value="OK" id="OKBt" class="butten btn-success" style="margin:3px" size="8"/> 
+<input type="button" value="CANCEL" class="butten btn-primary" id="CancelBt" size="8"/>
+
+
+
+<script>
+    $("#CancelBt").click(function () {
+        var url = "/config/Cancel";
+        $.post(url,function () {
+            window.location.href = "Config";
+        })
+    });
+
+    $("#OKBt").click(function () {
+        $("#OKBt").prop('disabled', true);
+        $("#CancelBt").prop('disabled', true);
+        var url = "/config/OK";
+        $.post(url,function () {
+            window.location.href = "Config";
+        })
+    });
+
+</script>

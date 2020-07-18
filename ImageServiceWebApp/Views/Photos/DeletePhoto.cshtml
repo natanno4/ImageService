@@ -1,0 +1,51 @@
+﻿@model ImageServiceWebApp.Models.PhotosModel
+
+@{
+    ViewBag.Title = "DeletePhoto";
+}
+
+
+
+<div style="border:1px solid lightblue; margin:10px ; padding:10px;">
+    <h1 style="font-family:'Lucida Calligraphy'; margin-top:5px">DeletePhoto</h1>
+
+
+    <h4 style="font-family:Courier New, Courier, monospace; margin-bottom:15px"><strong>are you sure you want to delete? </strong></h4>
+    @{
+        if (Model.viewPhoto != null)
+        {
+            <img src="@Url.Content(Model.viewPhoto.PhotoThumbPath)" style="border:1px solid blue; margin-top:5px" />
+            <h5 style="font-family:Courier New, Courier, monospace">Name: @Model.viewPhoto.Name</h5>
+        }
+        else
+        {
+            if (Model.photoToDelete != null)
+            {
+                {
+                    <img src="@Url.Content(Model.photoToDelete.PhotoThumbPath)" style="border:1px solid blue; margin-top:5px" />
+                    <h5 style="font-family:Courier New, Courier, monospace">Name: @Model.photoToDelete.Name</h5>
+                }
+            }
+        }
+    }
+
+<input type="button" value="OK" id="Delete" class="butten btn-success" size="8" /> <input type="button" value="Cancel" class="butten btn-primary" id="NoDelte" size="8" />
+</div>
+
+<script>
+    $("#NoDelte").click(function () {
+        var url = "/Photos/Cancel";
+        $.get(url, function (data) {
+            debugger
+            window.location.href = data.backTo;
+        }, "Json");
+        
+    });
+
+    $("#Delete").click(function () {
+        var url = "/Photos/OkDelete"
+        $.post(url, function () {
+            window.location.href = "Photos";
+        });
+    });
+</script>

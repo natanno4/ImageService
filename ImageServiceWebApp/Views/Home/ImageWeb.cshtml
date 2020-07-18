@@ -1,0 +1,51 @@
+﻿@model ImageServiceWebApp.Models.ImageWebModel
+@{
+    ViewBag.Title = "ImageWeb";
+}
+
+<h1 style="font-family:'Lucida Calligraphy'">Image Web</h1>
+
+@{ 
+    var txt = "";
+    if (Model.IsConnected)
+    {
+        txt = "on";
+    } else
+    {
+        txt = "off";
+    }
+}
+
+<h3 style="font-family:Courier New, Courier"> service is:
+    @{
+        if (txt == "on")
+        {
+            <span style="background-color:forestgreen"> @txt</span>
+        }
+        else
+        {
+            <span style="background-color:red"> @txt</span>
+        }
+    }
+    
+</h3>
+
+<h4 style="font-family:Courier New, Courier"> @Html.DisplayNameFor(model=> model.NumberOfPhotos)  <span style="font-weight:bold"> @Model.NumberOfPhotos </span></h4>
+
+<h5  style="font-family:Courier New, Courier">students info:</h5>
+<table class="table table-bordered" border="1" style="border:1px dashed blue">
+    <tr style="background-color:azure">
+        <th><p style="font-weight:bold">Student ID</p></th>
+        <th><p style="font-weight:bold">FirstName</p></th>
+        <th><p style="font-weight:bold">LastName</p></th>
+    </tr>
+    @foreach (var student in Model.StudentsInfo)
+    {
+        <tr>
+        <th>@Html.DisplayName(student.ID)</th>
+        <th>@Html.DisplayName(student.FirstName)</th>
+        <th>@Html.DisplayName(student.LastName)</th>
+          </tr>
+    }
+
+</table>
